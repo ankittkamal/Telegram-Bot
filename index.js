@@ -3,19 +3,50 @@ const { message } = require("telegraf/filters");
 require("dotenv").config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
 try {
-  bot.start((ctx) => ctx.reply("Welcome to Ankit Bot")); // start
-  bot.help((ctx) => ctx.reply("Send me a sticker"));
-  bot.on(message("sticker"), (ctx) => ctx.reply("🚀"));
-  bot.hears("hi", (ctx) => ctx.reply("Heya human"));
-  //   bot.command("quit", async (ctx) => {
-  //     // Explicit usage
-  //     await ctx.telegram.leaveChat(ctx.message.chat.id);
+  bot.start((ctx) => {
+    const msg =
+      "Thanks for showing interest to know about me. You can try /help for commands";
+    ctx.reply(msg);
+  });
 
-  //     // Using context shortcut
-  //     await ctx.leaveChat();
-  //   });
-  bot.on(message("text"), (ctx) => ctx.reply(`I don't know you`));
+  bot.command("help", (ctx) => {
+    ctx.reply(`
+    Choose from below options:
+    1) /Linkedin :- To get my Linkedin Profile Link
+    2) /Github :- To get my Github profile Link
+    3) /Resume :- To get Drive Link of my resume
+    4) /Leetcode :- To get my Leetcode Profile Link
+    `);
+  });
+
+  bot.command("Linkedin", (ctx) => {
+    const msg1 = "https://www.linkedin.com/in/ankit-kamal-57786419b";
+    ctx.reply(msg1);
+  });
+
+  bot.command("Github", (ctx) => {
+    const msg2 = "https://github.com/ankittkamal";
+    ctx.reply(msg2);
+  });
+
+  bot.command("Resume", (ctx) => {
+    const msg3 =
+      "https://drive.google.com/file/d/1q-gthh6kEs6d4eH/view?usp=share_link";
+    ctx.reply(msg3);
+  });
+
+  bot.command("Leetcode", (ctx) => {
+    const msg4 = "https://leetcode.com/ankittkamal/";
+    ctx.reply(msg4);
+  });
+
+  bot.on("text", (ctx) => {
+    ctx.reply(
+      "Sorry, I don't understand that command. Type /help to see the available commands."
+    );
+  });
+
   bot.launch();
-} catch {
-  console.log(`unexpeted command`);
+} catch (err) {
+  console.log("Error is " + err);
 }
