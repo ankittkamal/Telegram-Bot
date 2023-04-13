@@ -31,7 +31,7 @@ try {
 
   bot.command("Resume", (ctx) => {
     const msg3 =
-      "https://drive.google.com/file/d/1q-gthh6kEs6d4eH/view?usp=share_link";
+      "https://drive.google.com/file/d/12t8Ks0BEgSKJE-mi-qkplnje6aL4tMDA/view?usp=sharing";
     ctx.reply(msg3);
   });
 
